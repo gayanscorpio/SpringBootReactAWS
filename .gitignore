@@ -1,0 +1,22 @@
+# Ignore Java artifacts
+/target/
+/*.log
+
+# Ignore Maven wrapper files
+/mvnw
+/mvnw.cmd
+/.mvn/
+
+# Ignore IDE configuration files (like IntelliJ or Eclipse)
+.idea/
+*.iml
+.vscode/
+
+# Node / React build artifacts
+/frontend/node_modules/
+frontend/build/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+

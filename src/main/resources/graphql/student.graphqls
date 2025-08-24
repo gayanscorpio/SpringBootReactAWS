@@ -1,0 +1,67 @@
+type Student {
+  id: ID!
+  name: String!
+  email: String!
+  borrowedBooks: [BorrowedBook!]!
+}
+
+type Query {
+  allStudents(page: Int = 0, size: Int = 10): [Student!]!
+  studentById(id: ID!): Student
+}
+
+extend type Query {
+  allBooks: [Book!]!
+  bookById(id: ID!): Book
+
+  allBorrowedBooks: [BorrowedBook!]!
+  borrowedBooksByStudent(studentId: ID!, page: Int = 0, size: Int = 5): BorrowedBookPage!
+}
+
+type BorrowedBookPage {
+  content: [BorrowedBook!]!
+  totalPages: Int!
+  number: Int!
+}
+
+
+
+type Mutation {
+  addStudent(name: String!, email: String!): Student
+  updateStudent(id: ID!, name: String!, email: String!): Student
+  deleteStudent(id: ID!): Boolean
+}
+
+extend type Mutation {
+  addBook(title: String!, author: String!, isbn: String!, totalCopies: Int!): Book
+  borrowBook(studentId: ID!, bookId: ID!): BorrowedBook
+  returnBook(borrowedBookId: ID!): BorrowedBook
+}
+
+
+type Subscription {
+  studentAdded: Student!
+}
+
+type Book {
+  id: ID!
+  title: String!
+  author: String!
+  isbn: String!
+  totalCopies: Int!
+  availableCopies: Int!
+}
+
+
+type BorrowedBook {
+  id: ID!
+  student: Student!
+  book: Book!
+  borrowDate: String!
+  dueDate: String!
+  returnDate: String
+  fineAmount: Float
+}
+
+
+
